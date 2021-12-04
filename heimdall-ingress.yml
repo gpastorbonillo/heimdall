@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: heimdall-ingress
+  namespace: heimdall 
+  annotations: 
+    nginx.ingress.kubernetes.io/affinity: cookie
+  labels: 
+    app: heimdall
+spec:
+  ingressClassName: nginx 
+  tls: 
+  - hosts:
+    - heimdall.gpastor.net
+    secretName: gpastor-wildcard
+  rules: 
+  - host: heimdall.gpastor.net
+    http: 
+      paths: 
+      - path: / 
+        pathType: Prefix
+        backend: 
+          service: 
+            name: heimdall-web-service 
+            port: 
+              number: 80

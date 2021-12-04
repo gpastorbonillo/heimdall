@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim 
+metadata: 
+  namespace: heimdall
+  name: heimdall
+  labels: 
+    app: heimdall
+spec: 
+  volumeName: "heimdall" 
+  accessModes: 
+  - ReadWriteMany 
+  resources: 
+    requests: 
+      storage: "1Gi"
